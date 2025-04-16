@@ -1,0 +1,1 @@
+<img id="gandalf" src="img/gandalf.png">
