@@ -1,9 +1,8 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["rol"]))
-       $_SESSION["rol"] = "invitado";
+include "plantillas/funciones.php";
 
-       var_dump($_SESSION);
+inicioSesion();
+
     if ($_SESSION["rol"] == "invitado"){
         include "plantillas/headerInvitado.php";
         include "plantillas/menu.php";

@@ -10,7 +10,6 @@ $_SESSION["rol"] = "invitado";
             <?php
             if ($_SESSION["rol"] == "administrador"){
             echo '<li><a href="usuarios.php">Usuarios</a></li>';
-            echo '<li><a href="editarDatos.php">Editar</a></li>';
             }
             ?>
             <li><a href="">Fecha reparto</a></li>

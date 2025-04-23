@@ -1,5 +1,15 @@
 <?php
 
+function inicioSesion(){
+    session_start();
+    //session_regenerate_id(true);
+
+    if (!isset($_SESSION["rol"]))
+       $_SESSION["rol"] = "invitado";
+
+    var_dump($_SESSION);
+}
+
     function login($usuario, $password){
         if (!isset($_SESSION["rol"]))
         session_start();

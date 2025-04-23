@@ -1,5 +1,12 @@
 <?php
-session_start();
+include "plantillas/funciones.php";
+
+inicioSesion();
+
+if($_SESSION["rol"] != "administrador"){
+    header("Location: index.php");
+}
+else{
 include "plantillas/headerUsuario.php";
 include "plantillas/menu.php";
 
@@ -98,4 +105,5 @@ if (isset($result)) {
 
 $conn = null;
 include "plantillas/footer.php";
+}
 ?>

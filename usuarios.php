@@ -1,5 +1,7 @@
 <?php
-    session_start();
+include "plantillas/funciones.php";
+
+    inicioSesion();
 
     if (!isset($_SESSION["rol"]))
        $_SESSION["rol"] = "invitado";

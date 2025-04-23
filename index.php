@@ -1,11 +1,7 @@
 <?php
-    session_start();
-    //session_regenerate_id(true);
+include "plantillas/funciones.php";
 
-    if (!isset($_SESSION["rol"]))
-       $_SESSION["rol"] = "invitado";
-
-    var_dump($_SESSION);
+inicioSesion();
 
     if ($_SESSION["rol"] == "invitado"){
         include "plantillas/headerInvitado.php";

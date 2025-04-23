@@ -1,4 +1,4 @@
-<?php include "funciones.php";
+<?php
 date_default_timezone_set("Europe/Madrid");
 ?>
 <!DOCTYPE html>
