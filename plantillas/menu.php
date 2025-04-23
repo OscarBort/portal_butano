@@ -8,7 +8,7 @@ $_SESSION["rol"] = "invitado";
             <li><a href="">Productos</a></li>
             <li><a href="">Pedidos</a></li>
             <?php
-            if ($_SESSION["rol"] != "invitado"){
+            if ($_SESSION["rol"] == "administrador"){
             echo '<li><a href="usuarios.php">Usuarios</a></li>';
             echo '<li><a href="editarDatos.php">Editar</a></li>';
             }

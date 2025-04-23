@@ -2,41 +2,64 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    
+    $tabla = "";
+    if ($_SESSION['rol'] == 'administrador') {
+        $sql = "";
+        ?><div class="centrado">
+            <h2>Usuarios del sistema</h2>
+
+            <!-- Formulario de búsqueda -->
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?buscar">
+                <input type="search" id="busqueda" name="busqueda">
+                <input type="submit" value="Buscar">
+            </form>
+
+        </div>
+    <?php    
+        if (isset($_GET['buscar'])) {
+            $sql = "SELECT id, user, email, facceso FROM usuarios WHERE user LIKE '%" . $_POST['busqueda'] . "%'";
+        } else {
+            $sql = "SELECT id, user, email, facceso FROM usuarios";
+        }
     try {
         $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT user, email, nombre, rol, facceso, fcreacion FROM usuarios WHERE user='$_SESSION[user]'");
+        $stmt = $conn->prepare($sql);
         $stmt->execute();
 
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
         // Aquí asignamos a $result el array que devuelve, si hay varias lineas tenemos que usar fetchAll.
         $result = $stmt->fetchall(PDO::FETCH_ASSOC);
   
-        // foreach ($result as $row) {
-        //     foreach ($row as $key => $value) {
-        //         echo "$key: $value<br>";
-        //     }
-        // }
-
-        if (!empty($result)) {
-            echo "<table id='tablaUsuarios' border='1' cellpadding='5' cellspacing='0'>";
-            //echo "<tr><th>Campo</th><th>Valor</th></tr>";
-            foreach ($result[0] as $key => $value) {
-                echo "<tr>";
-                echo "<td><strong>$key</strong></td>";
-                echo "<td>$value</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
+        if (count($result) == 0) {
+            $tabla = "<h4>No se han encontrado usuarios</h4>";
         } else {
-            echo "No se encontraron resultados.";
-        }
-    } 
-    
+            $tabla = "<table id='tablaUsuarios'>";
+            $tabla .= "<tr><th>ID</th><th>Usuario</th><th>Email</th><th>Último acceso</th><th>Opciones</th></tr>";
 
-    catch(PDOException $e) {
-      echo "Connection failed: " . $e->getMessage();
+            for ($i = 0; $i < count($result); $i++) {
+                $tabla .= "<tr><td>";
+                $tabla .= $result[$i]['id'];
+                $tabla .= "</td><td>";
+                $tabla .= $result[$i]['user'];
+                $tabla .= "</td><td>";
+                $tabla .= $result[$i]['email'];
+                $tabla .= "</td><td>";
+                $tabla .= $result[$i]['facceso'];
+                $tabla .= "</td><td>";
+                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?ver&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-eye"></i></span></a>';
+                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?editar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-pen"></i></spanss=>';
+                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?borrar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-trash"></i></span>';
+                $tabla .= "</span></td></tr>";
+            }
+            $tabla .= "</table>";    
+        }
+        //Tabla de usuarios en BD
+        echo $tabla;
     }
-    $conn = null;
+    catch(PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+    $conn = null;  
+}
 ?>

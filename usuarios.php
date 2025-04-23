@@ -4,7 +4,7 @@
     if (!isset($_SESSION["rol"]))
        $_SESSION["rol"] = "invitado";
     
-    if ($_SESSION["rol"] != "invitado"){
+    if ($_SESSION["rol"] == "administrador"){
         include "plantillas/headerUsuario.php";
         include "plantillas/menu.php";
         include "plantillas/contenido_Usuario.php";

@@ -34,7 +34,7 @@
                         // Esto es para pintarme en index los session de control
                         $_SESSION["rol"] = $result["rol"];
                         $_SESSION["user"] = $result["user"];
-                        if ($_SESSION["rol"] != "invitado")
+                        if ($_SESSION["rol"] == "administrador")
                             header("Location:" . $_SESSION['origen']);
                         else header("Location: index.php");
                         unset($_SESSION['origen']);
