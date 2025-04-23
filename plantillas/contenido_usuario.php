@@ -48,7 +48,7 @@
                 $tabla .= $result[$i]['facceso'];
                 $tabla .= "</td><td>";
                 $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?ver&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-eye"></i></span></a>';
-                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?editar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-pen"></i></spanss=>';
+                $tabla .= '<a class="iconitos" href="contenidoDatos.php?editar&id=' . $result[$i]['id'] . '"><span><i class="fa-solid fa-pen"></i></span></a>';
                 $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?borrar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-trash"></i></span>';
                 $tabla .= "</span></td></tr>";
             }

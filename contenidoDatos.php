@@ -1,33 +1,37 @@
 <?php
+session_start();
+include "plantillas/headerUsuario.php";
+include "plantillas/menu.php";
 
 try {
     $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Verificamos si es una solicitud POST y si el 'id' está presente
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
         // Limpiar y preparar datos del formulario
         $usuario = trim($_POST['usuario']);
         $rol = trim($_POST['rol']);
-    
         $email = trim($_POST['email']);
         $email = $email === '' ? null : $email;
-    
         $nombre = trim($_POST['nombre']);
         $nombre = $nombre === '' ? null : $nombre;
-    
+
         // Obtener los datos actuales de la base de datos para comparar
-        $stmt = $conn->prepare("SELECT user, password, email, nombre, rol FROM usuarios WHERE id = :id");
-        $stmt->bindParam(':id', $_POST['id']);
+        $id = $_POST['id']; // Usamos el ID de POST que viene del formulario
+
+        $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         $currentData = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         // Comprobar si el usuario escribió una nueva contraseña
         $nuevaPassword = $_POST['password'];
         $cambioPassword = !empty($nuevaPassword);
-    
+
         // Si escribió una nueva, la encriptamos. Si no, usamos la que ya había.
         $passwordHash = $cambioPassword ? password_hash($nuevaPassword, PASSWORD_DEFAULT) : $currentData['password'];
-    
+
         // Verificar si hay cambios en cualquier campo
         $hayCambios = 
             $currentData['user'] !== $usuario ||
@@ -35,7 +39,7 @@ try {
             $currentData['nombre'] !== $nombre ||
             $currentData['rol'] !== $rol ||
             $cambioPassword;
-    
+
         if ($hayCambios) {
             $sql = "UPDATE usuarios SET 
                         user = :usuario,
@@ -44,7 +48,7 @@ try {
                         nombre = :nombre,
                         rol = :rol
                     WHERE id = :id";
-    
+
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':usuario', $usuario);
             $stmt->bindParam(':password', $passwordHash);
@@ -53,24 +57,34 @@ try {
             $stmt->bindParam(':rol', $rol);
             $stmt->bindParam(':id', $_POST['id']);
             $stmt->execute();
-    
+
             echo "Datos actualizados correctamente.<br><br>";
         } else {
             echo "No se detectaron cambios, no se actualizó nada.<br><br>";
         }
     }
 
-    // Obtener datos actuales para el formulario
-    $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE user = :user");
-    $stmt->bindParam(':user', $_SESSION['user']);
-    $stmt->execute();
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Obtener los datos del usuario a editar desde GET
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Si no existe el usuario, mostramos un mensaje de error
+        if (!$result) {
+            echo "No se encontró el usuario con ID $id.";
+            exit;
+        }
+    }
 
 } catch(PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 
-if ($result) {
+if (isset($result)) {
+    // Mostrar formulario con los datos del usuario
     echo "<form action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' method='POST'>
         <input type='hidden' id='idDatos' name='id' value='{$result['id']}' readonly><br>
         <label for='usuario'>Nick: </label><input type='text' id='usuarioDatos' name='usuario' value='{$result['user']}'><br>
@@ -78,8 +92,10 @@ if ($result) {
         <label for='email'>Correo: </label><input type='email' id='emailDatos' name='email' value='{$result['email']}'><br>
         <label for='nombre'>Nombre: </label><input type='text' id='nombreDatos' name='nombre' value='{$result['nombre']}'><br>
         <label for='rol'>Rol: </label><input type='text' id='rolDatos' name='rol' value='{$result['rol']}'>
-        <input type='submit' value='Enviar'></form>";
+        <input type='submit' value='Enviar'>
+    </form>";
 }
 
 $conn = null;
+include "plantillas/footer.php";
 ?>
