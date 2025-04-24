@@ -17,7 +17,7 @@ try {
   
   if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $user = sanear($_POST['usuario']);
-    $password = sanear($_POST['password']);
+    $password = password_hash(sanear($_POST['password']), PASSWORD_DEFAULT);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $nombre = $_POST['nombre'];
     $estado = $_POST['estado'];
