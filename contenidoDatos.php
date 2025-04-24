@@ -78,12 +78,6 @@ try {
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Si no existe el usuario, mostramos un mensaje de error
-        if (!$result) {
-            echo "No se encontró el usuario con ID $id.";
-            exit;
-        }
     }
 
 } catch(PDOException $e) {
