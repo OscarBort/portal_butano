@@ -88,11 +88,13 @@ if (isset($result)) {
     // Mostrar formulario con los datos del usuario
     echo "<form action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' method='POST'>
         <input type='hidden' id='idDatos' name='id' value='{$result['id']}' readonly><br>
-        <label for='usuario'>Nick: </label><input type='text' id='usuarioDatos' name='usuario' value='{$result['user']}'><br>
-        <label for='password'>Cambiar contraseña: </label><input type='text' id='passwordDatos' name='password' value=''><br>
-        <label for='email'>Correo: </label><input type='email' id='emailDatos' name='email' value='{$result['email']}'><br>
-        <label for='nombre'>Nombre: </label><input type='text' id='nombreDatos' name='nombre' value='{$result['nombre']}'><br>
-        <label for='rol'>Rol: </label><input type='text' id='rolDatos' name='rol' value='{$result['rol']}'>
+        <label for='usuario' class='labelEditar'>Nick: </label><input class='inputEditar' type='text' id='usuarioDatos' name='usuario' value='{$result['user']}'><br>
+        <label for='password' class='labelEditar'>Cambiar contraseña: </label><input class='inputEditar' type='text' id='passwordDatos' name='password' value=''><br>
+        <label for='email' class='labelEditar'>Correo: </label><input class='inputEditar' type='email' id='emailDatos' name='email' value='{$result['email']}'><br>
+        <label for='nombre' class='labelEditar'>Nombre: </label><input class='inputEditar' type='text' id='nombreDatos' name='nombre' value='{$result['nombre']}'><br>
+        <label for='rol' class='labelEditar'>Rol: </label><select id='rolDatos' name='rol'>
+            <option value='administrador'>Administrador</option>
+            <option value='usuario'>Usuario</option>
         <input type='submit' value='Enviar'>
     </form>";
 }

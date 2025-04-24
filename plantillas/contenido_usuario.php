@@ -5,8 +5,8 @@
     $tabla = "";
     if ($_SESSION['rol'] == 'administrador') {
         $sql = "";
-        ?><div class="centrado">
-            <h2>Usuarios del sistema</h2>
+        ?><div class="busqueda">
+            <h2 style="padding-bottom: 10px">Usuarios del sistema</h2>
 
             <!-- Formulario de búsqueda -->
             <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>?buscar">
@@ -47,8 +47,8 @@
                 $tabla .= "</td><td>";
                 $tabla .= $result[$i]['facceso'];
                 $tabla .= "</td><td>";
-                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?ver&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-eye"></i></span></a>';
-                $tabla .= '<a class="iconitos" href="contenidoDatos.php?editar&id=' . $result[$i]['id'] . '"><span><i class="fa-solid fa-pen"></i></span></a>';
+                $tabla .= '<a class="iconitos" href=verDatos.php?ver&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-eye"></i></span></a>';
+                $tabla .= '<a class="iconitos" href="editarDatos.php?editar&id=' . $result[$i]['id'] . '"><span><i class="fa-solid fa-pen"></i></span></a>';
                 $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?borrar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-trash"></i></span>';
                 $tabla .= "</span></td></tr>";
             }

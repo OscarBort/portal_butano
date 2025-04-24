@@ -127,6 +127,18 @@ main{
     margin: auto;
     padding: 20px;
 }
+/* barra búsqueda*/
+.busqueda{
+    margin-left: 40%;
+    padding-top: 2%;
+}
+/* Página de editar datos usuario*/
+.labelEditar{
+    margin-left: 35%;
+}
+.inputEditar{
+    justify-content: center;
+}
 /* Página contacto */
 #contactoForm{
     padding-top: 2%;
