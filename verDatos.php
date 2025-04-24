@@ -3,60 +3,14 @@ include "plantillas/funciones.php";
 
 inicioSesion();
 
-if($_SESSION["rol"] != "administrador"){
+if($_SESSION["rol"] == "invitado"){
     header("Location: index.php");
 }
 else{
 include "plantillas/headerUsuario.php";
 include "plantillas/menu.php";
 
-// try {
-//     $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
-//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-//     // Verificamos si es una solicitud POST y si el 'id' está presente
-//     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["id"])) {
-//         // Limpiar y preparar datos del formulario
-//         $usuario = trim($_POST['usuario']);
-//         $rol = trim($_POST['rol']);
-//         $email = trim($_POST['email']);
-//         $email = $email === '' ? null : $email;
-//         $nombre = trim($_POST['nombre']);
-//         $nombre = $nombre === '' ? null : $nombre;
-
-//         // Obtener los datos actuales de la base de datos para comparar
-//         $id = $_POST['id']; // Usamos el ID de POST que viene del formulario
-
-//         $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
-//         $stmt->bindParam(':id', $id);
-//         $stmt->execute();
-//         $currentData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-//     // Obtener los datos del usuario a editar desde GET
-//     if (isset($_GET['id'])) {
-//         $id = $_GET['id'];
-//         $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
-//         $stmt->bindParam(':id', $id);
-//         $stmt->execute();
-//         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-//     }
-
-// } 
-
-// if (isset($result)) {
-//     // Mostrar formulario con los datos del usuario
-//     echo "<table>
-//     <tr><th>ID</th><td>" . $result['id'] . "</td></tr>
-//     <tr><th>Usuario</th><td>" . $result['user'] . "</td></tr>
-//     <tr><th>Contraseña</th><td>" . $result['password'] . "</td></tr>
-//     <tr><th>Correo</th><td>" . $result['email'] . "</td></tr>
-//     <tr><th>Nombre</th><td>" . $result['nombre'] . "</td></tr>
-//     <tr><th>Rol</th><td>" . $result['rol'] . "</td></tr>
-//     </table>";
-// } 
-// } catch(PDOException $e) {
-//     echo "Error: " . $e->getMessage();
-// }
+if($_SESSION["rol"] == "administrador"){
 try {
     $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -102,6 +56,41 @@ try {
     echo "Error: " . $e->getMessage();
 }
 $conn = null;
-include "plantillas/footer.php";
+} elseif ($_SESSION["rol"] == "usuario"){
+    try {
+        $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE user = :user");
+        $stmt->bindParam(':user', $_SESSION["user"]);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        // // Si se quiere ver el detalle del usuario por GET
+        // if (isset($_GET['id'])) {
+        //     $id = $_GET['id'];
+        //     $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
+        //     $stmt->bindParam(':id', $id);
+        //     $stmt->execute();
+            //$result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($result) {
+                echo "<table id=tablaUsuarios>
+                <tr><th>ID</th><td>" . $result['id'] . "</td></tr>
+                <tr><th>Usuario</th><td>" . $result['user'] . "</td></tr>
+                <tr><th>Contraseña</th><td>" . $result['password'] . "</td></tr>
+                <tr><th>Correo</th><td>" . $result['email'] . "</td></tr>
+                <tr><th>Nombre</th><td>" . $result['nombre'] . "</td></tr>
+                <tr><th>Rol</th><td>" . $result['rol'] . "</td></tr>
+                </table>";
+            }
+        }
+        catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+        $conn = null;
+    }
+    
 }
+
+include "plantillas/footer.php";
 ?>

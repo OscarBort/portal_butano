@@ -11,6 +11,7 @@ $_SESSION["rol"] = "invitado";
             if ($_SESSION["rol"] == "administrador"){
             echo '<li><a href="usuarios.php">Usuarios</a></li>';
             }
+            elseif ($_SESSION["rol"] == "usuario") echo '<li><a href="verDatos.php">Usuario</a></li>';
             ?>
             <li><a href="">Fecha reparto</a></li>
             <li id="contacto"><a href="contacto.php">Contacto</a></li>
