@@ -48,6 +48,7 @@ try {
             VALUES ('$user', '$password', '$email', '$nombre', '$estado', '$rol')";
     // use exec() because no results are returned
   $conn->exec($sql);
+  header("Location: usuarios.php");
 } catch(PDOException $e) {
   echo "Connection failed: " . $e->getMessage();
 } $conn = null;
