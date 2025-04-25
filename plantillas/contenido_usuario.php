@@ -60,6 +60,7 @@
     catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-    $conn = null;  
-}
+    $conn = null; 
+} 
+echo '<a href="nuevoUsuario.php" id="crearLogo"><i class="fa-solid fa-plus"></i></a>';
 ?>
