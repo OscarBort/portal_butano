@@ -33,7 +33,7 @@ try {
     // Si se quiere ver el detalle del usuario por GET
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE id = :id");
+        $stmt = $conn->prepare("SELECT id, user, email, nombre, rol FROM usuarios WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -42,7 +42,6 @@ try {
             echo "<table id=tablaUsuarios>
             <tr><th>ID</th><td>" . $result['id'] . "</td></tr>
             <tr><th>Usuario</th><td>" . $result['user'] . "</td></tr>
-            <tr><th>Contraseña</th><td>" . $result['password'] . "</td></tr>
             <tr><th>Correo</th><td>" . $result['email'] . "</td></tr>
             <tr><th>Nombre</th><td>" . $result['nombre'] . "</td></tr>
             <tr><th>Rol</th><td>" . $result['rol'] . "</td></tr>

@@ -32,17 +32,20 @@ try {
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
-  if (isset($_POST['usuario'], $_POST['password'], $_POST['email'], $_POST['nombre'], $_POST['estado'], $_POST['rol'])){
-    $user = sanear($_POST['usuario']);
-    $password = password_hash(sanear($_POST['password']), PASSWORD_DEFAULT);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $nombre = $_POST['nombre'];
-    $estado = $_POST['estado'];
-    $rol = $_POST['rol'];
+    if (isset($_POST['usuario'], $_POST['password'], $_POST['email'], $_POST['nombre'], $_POST['estado'], $_POST['rol'])){
+      $user = sanear($_POST['usuario']);
+      $password = password_hash(sanear($_POST['password']), PASSWORD_DEFAULT);
+      $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+      $nombre = $_POST['nombre'];
+      $estado = $_POST['estado'];
+      $rol = $_POST['rol'];
     } else {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST'){
       echo "Faltan datos en el formulario.";
+      }
       exit;
       }
+  
 
     $sql = "INSERT INTO usuarios (user, password, email, nombre, estado, rol)
             VALUES ('$user', '$password', '$email', '$nombre', '$estado', '$rol')";

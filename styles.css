@@ -135,21 +135,23 @@ main{
 }
 /* Página de editar datos usuario*/
 .labelEditar{
-    margin-left: 45%;
+    margin-left: 40%;
     font-size: larger;
     font-weight: bold;
 }
 .inputEditar{
-    margin-left: 45%;
+    margin-left: 40%;
     margin-bottom: 5px;
     font-size: large;
+    width: 250px;
+    height: 40px;
 }
 #rolDatos{
     margin-left: 15px;
     margin-top: 10px;
 }
 #editarBoton{
-    margin: 1% 0 2% 48%;
+    margin: 1% 0 2% 45%;
     padding: 10px 15px;
     border-radius: 25%;
 }
@@ -181,7 +183,7 @@ main{
 /* página usuario */
 #tablaUsuarios {
     display: inline-block;
-    margin: 3% 0 1% 30%;
+    margin: 3% 0 1% 32%;
     border-collapse: collapse; /* ¡Aplicado aquí! */
     border: 1px solid black; /* o el color que prefieras */
     
