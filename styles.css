@@ -167,11 +167,13 @@ main{
 }
 /* página usuario */
 #tablaUsuarios {
-    position: relative;
-    margin: auto;
-    top: 50px;
+    display: inline-block;
+    margin-top: 3%;
+    margin-bottom: 4%;
+    margin-left: 25%;
     border-collapse: collapse; /* ¡Aplicado aquí! */
     border: 1px solid black; /* o el color que prefieras */
+    
 }
 
 #tablaUsuarios th,
@@ -181,6 +183,7 @@ main{
     text-align: center;
     background-color: white;
     border: 1px solid black;
+    margin-bottom: 35px;
 }
 #crearLogo{
     display: inline-block;
