@@ -88,14 +88,19 @@ if (isset($result)) {
     // Mostrar formulario con los datos del usuario
     echo "<form action='" . htmlspecialchars($_SERVER['PHP_SELF']) . "' method='POST'>
         <input type='hidden' id='idDatos' name='id' value='{$result['id']}' readonly><br>
-        <label for='usuario' class='labelEditar'>Nick: </label><input class='inputEditar' type='text' id='usuarioDatos' name='usuario' value='{$result['user']}'><br>
-        <label for='password' class='labelEditar'>Cambiar contraseña: </label><input class='inputEditar' type='text' id='passwordDatos' name='password' value=''><br>
-        <label for='email' class='labelEditar'>Correo: </label><input class='inputEditar' type='email' id='emailDatos' name='email' value='{$result['email']}'><br>
-        <label for='nombre' class='labelEditar'>Nombre: </label><input class='inputEditar' type='text' id='nombreDatos' name='nombre' value='{$result['nombre']}'><br>
-        <label for='rol' class='labelEditar'>Rol: </label><select id='rolDatos' name='rol'>
+        <label for='usuario' class='labelEditar'>Nick: </label><br>
+        <input class='inputEditar' type='text' id='usuarioDatos' name='usuario' value='{$result['user']}'><br>
+        <label for='password' class='labelEditar'>Cambiar contraseña: </label><br>
+        <input class='inputEditar' type='text' id='passwordDatos' name='password' value=''><br>
+        <label for='email' class='labelEditar'>Correo: </label><br>
+        <input class='inputEditar' type='email' id='emailDatos' name='email' value='{$result['email']}'><br>
+        <label for='nombre' class='labelEditar'>Nombre: </label><br>
+        <input class='inputEditar' type='text' id='nombreDatos' name='nombre' value='{$result['nombre']}'><br>
+        <label for='rol' class='labelEditar'>Rol: </label><select id='rolDatos' name='rol'><br>
             <option value='administrador'>Administrador</option>
             <option value='usuario'>Usuario</option>
-        <input type='submit' value='Enviar'>
+        </select><br>
+        <input type='submit' value='Enviar' id='editarBoton'>
     </form>";
 }
 

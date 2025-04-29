@@ -135,10 +135,21 @@ main{
 }
 /* Página de editar datos usuario*/
 .labelEditar{
-    margin-left: 35%;
+    
+    margin-left: 45%;
 }
 .inputEditar{
-    justify-content: center;
+    margin-left: 45%;
+    margin-bottom: 5px;
+}
+#rolDatos{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+#editarBoton{
+    margin: 1% 0 2% 48%;
+    padding: 10px 15px;
+    border-radius: 25%;
 }
 /* Página contacto */
 #contactoForm{
