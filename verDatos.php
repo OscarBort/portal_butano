@@ -60,7 +60,7 @@ $conn = null;
     try {
         $conn = new PDO("mysql:host=localhost;dbname=primerejemplo", "root", "");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT id, user, password, email, nombre, rol FROM usuarios WHERE user = :user");
+        $stmt = $conn->prepare("SELECT id, user, email, nombre, rol FROM usuarios WHERE user = :user");
         $stmt->bindParam(':user', $_SESSION["user"]);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,6 @@ $conn = null;
                 echo "<table id=tablaUsuarios>
                 <tr><th>ID</th><td>" . $result['id'] . "</td></tr>
                 <tr><th>Usuario</th><td>" . $result['user'] . "</td></tr>
-                <tr><th>Contraseña</th><td>" . $result['password'] . "</td></tr>
                 <tr><th>Correo</th><td>" . $result['email'] . "</td></tr>
                 <tr><th>Nombre</th><td>" . $result['nombre'] . "</td></tr>
                 <tr><th>Rol</th><td>" . $result['rol'] . "</td></tr>

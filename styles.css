@@ -118,7 +118,7 @@ nav a:active {
 /* Aquí empieza el main */
 main{
     margin-top: 0;
-    height: fit-content;
+    min-height: 250px;
     background-color: rgba(249, 244, 242, 0.3);
     width: 100%;
 }
@@ -135,12 +135,14 @@ main{
 }
 /* Página de editar datos usuario*/
 .labelEditar{
-    
     margin-left: 45%;
+    font-size: larger;
+    font-weight: bold;
 }
 .inputEditar{
     margin-left: 45%;
     margin-bottom: 5px;
+    font-size: large;
 }
 #rolDatos{
     margin-left: 15px;
@@ -179,9 +181,7 @@ main{
 /* página usuario */
 #tablaUsuarios {
     display: inline-block;
-    margin-top: 3%;
-    margin-bottom: 4%;
-    margin-left: 25%;
+    margin: 3% 0 1% 30%;
     border-collapse: collapse; /* ¡Aplicado aquí! */
     border: 1px solid black; /* o el color que prefieras */
     
@@ -199,7 +199,6 @@ main{
 #crearLogo{
     display: inline-block;
     margin-left: 47%;  /* Margen adecuado para separación */
-    margin-top: 60px;
     margin-bottom: 10px;
     font-size: 40px;  /* Asegura que el icono sea lo suficientemente grande */
     text-align: center;  /* Centra el logo */
@@ -214,7 +213,7 @@ main{
 /* borrar usuario */
 #confirmarBorrado{
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5%;
     margin-bottom: 15px;
 }
 #siBorrado{
