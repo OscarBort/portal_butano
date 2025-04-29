@@ -118,7 +118,7 @@ nav a:active {
 /* Aquí empieza el main */
 main{
     margin-top: 0;
-    height: 520px;
+    height: fit-content;
     background-color: rgba(249, 244, 242, 0.3);
     width: 100%;
 }
@@ -186,6 +186,7 @@ main{
     display: inline-block;
     margin-left: 47%;  /* Margen adecuado para separación */
     margin-top: 60px;
+    margin-bottom: 10px;
     font-size: 40px;  /* Asegura que el icono sea lo suficientemente grande */
     text-align: center;  /* Centra el logo */
     color: #000;  /* Asegura que el icono sea visible (en color negro) */
@@ -194,6 +195,21 @@ main{
     border-radius: 25%;
     padding: 5px;
     background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* borrar usuario */
+#confirmarBorrado{
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 15px;
+}
+#siBorrado{
+    margin-left: 45%;
+    margin-bottom: 10px;
+}
+.botonBorrado{
+    padding: 5px;
+    border-radius: 25%;
 }
 /* pagina usuarioError*/
 #gandalf {

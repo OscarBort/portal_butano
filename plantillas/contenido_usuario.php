@@ -49,7 +49,7 @@
                 $tabla .= "</td><td>";
                 $tabla .= '<a class="iconitos" href=verDatos.php?ver&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-eye"></i></span></a>';
                 $tabla .= '<a class="iconitos" href="editarDatos.php?editar&id=' . $result[$i]['id'] . '"><span><i class="fa-solid fa-pen"></i></span></a>';
-                $tabla .= '<a class="iconitos" href=' . $_SERVER['PHP_SELF'] . '?borrar&id=' . $result[$i]['id'] . '><span><i class="fa-solid fa-trash"></i></span>';
+                $tabla .= '<a class="iconitos" href="borrarDatos.php?borrar&id=' . $result[$i]['id'] . '"><span><i class="fa-solid fa-trash"></i></span>';
                 $tabla .= "</span></td></tr>";
             }
             $tabla .= "</table>";    
