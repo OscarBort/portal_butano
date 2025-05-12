@@ -17,11 +17,12 @@ try {
 
     // Búsqueda (por GET ahora)
     $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+    $metodo = isset($_GET['metodo']) ? $_GET['metodo'] : '';
     $hayBusqueda = !empty($busqueda);
 
     // 1. Contar total de resultados
     if ($hayBusqueda) {
-        $sqlTotal = "SELECT COUNT(*) FROM $tabla WHERE texto LIKE :busqueda";
+        $sqlTotal = "SELECT COUNT(*) FROM $tabla WHERE $metodo LIKE :busqueda";
     } else {
         $sqlTotal = "SELECT COUNT(*) FROM $tabla";
     }
@@ -35,7 +36,7 @@ try {
 
     // 2. Obtener resultados paginados
     if ($hayBusqueda) {
-        $sql = "SELECT texto, cod_mun, dia FROM $tabla WHERE texto LIKE :busqueda ORDER BY texto LIMIT :offset, :porPagina";
+        $sql = "SELECT texto, cod_mun, dia FROM $tabla WHERE $metodo LIKE :busqueda ORDER BY texto LIMIT :offset, :porPagina";
     } else {
         $sql = "SELECT texto, cod_mun, dia FROM $tabla ORDER BY texto LIMIT :offset, :porPagina";
     }
@@ -56,6 +57,12 @@ try {
         <h2 style="padding-bottom: 10px">Usuarios del sistema</h2>
         <form method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <input type="search" id="busqueda" name="busqueda" value="<?php echo htmlspecialchars($busqueda); ?>">
+            <input type="radio" id="metodo_texto" name="metodo" value="texto">
+                <label for="texto">texto</label><br>
+            <input type="radio" id="metodo_cod" name="metodo" value="cod_mun">
+                <label for="cod_mun">Código municipio</label><br>
+            <input type="radio" id="metodo_dia" name="metodo" value="dia">
+                <label for="dia">Dia reparto</label>
             <input type="submit" value="Buscar">
         </form>
     </div>
@@ -80,9 +87,12 @@ try {
 
         for ($i = 1; $i <= $totalPaginas; $i++) {
             $url = $_SERVER['PHP_SELF'] . "?pagina=$i";
-            if ($hayBusqueda) {
-                $url .= "&busqueda=" . urlencode($busqueda);
-            }
+if ($hayBusqueda) {
+    $url .= "&busqueda=" . urlencode($busqueda);
+    if (!empty($metodo)) {
+        $url .= "&metodo=" . urlencode($metodo);
+    }
+}
             echo "<a href='$url'" . ($i == $pagina ? " style='font-weight:bold; text-decoration:underline;'" : "") . ">$i</a> ";
         }
 
