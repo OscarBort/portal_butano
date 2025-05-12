@@ -13,7 +13,7 @@ $_SESSION["rol"] = "invitado";
             }
             elseif ($_SESSION["rol"] == "usuario") echo '<li><a href="verDatos.php">Usuario</a></li>';
             ?>
-            <li><a href="">Fecha reparto</a></li>
+            <li><a href="reparto.php">Fecha reparto</a></li>
             <li id="contacto"><a href="contacto.php">Contacto</a></li>
         </ul>
     </nav>
