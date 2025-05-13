@@ -49,51 +49,100 @@ function compCorreo(){
     }
 }
 // Funciones para la página pedidos
-function restarpedidoB(){
+/*function restarpedidoB(){
+    if (contadorB > 0){
     contadorB--;
-    document.getElementById("contadorB").innerText = contadorB;
+    document.getElementById("contadorB").innerText = contadorB; }
 }
 function sumarpedidoB(){
     contadorB++;
     document.getElementById("contadorB").innerText = contadorB;
 }
 function restarpedidoP(){
+    if (contadorP > 0){
     contadorP--;
-    document.getElementById("contadorP").innerText = contadorP;
+    document.getElementById("contadorP").innerText = contadorP;}
 }
 function sumarpedidoP(){
     contadorP++;
     document.getElementById("contadorP").innerText = contadorP;
 }
 function restarpedidoN(){
+    if (contadorN > 0){
     contadorN--;
-    document.getElementById("contadorN").innerText = contadorN;
+    document.getElementById("contadorN").innerText = contadorN;}
 }
 function sumarpedidoN(){
     contadorN++;
     document.getElementById("contadorN").innerText = contadorN;
 }
 function restarpedidoI(){
+    if (contadorI > 0){
     contadorI--;
-    document.getElementById("contadorI").innerText = contadorI;
+    document.getElementById("contadorI").innerText = contadorI;}
 }
 function sumarpedidoI(){
     contadorI++;
     document.getElementById("contadorI").innerText = contadorI;
 }
 function restarpedidoK(){
+    if (contadorK > 0){
     contadorK--;
-    document.getElementById("contadorK").innerText = contadorK;
+    document.getElementById("contadorK").innerText = contadorK;}
 }
 function sumarpedidoK(){
     contadorK++;
     document.getElementById("contadorK").innerText = contadorK;
 }
 function restarpedidoC(){
+    if (contadorC > 0){
     contadorC--;
-    document.getElementById("contadorC").innerText = contadorC;
+    document.getElementById("contadorC").innerText = contadorC;}
 }
 function sumarpedidoC(){
     contadorC++;
     document.getElementById("contadorC").innerText = contadorC;
+}*/
+function sumarpedido(clave) {
+    productos[clave].cantidad++;
+    actualizarContador(clave);
+    actualizarResumen();
+}
+
+function restarpedido(clave) {
+    if (productos[clave].cantidad > 0) {
+        productos[clave].cantidad--;
+        actualizarContador(clave);
+        actualizarResumen();
+    }
+}
+function actualizarContador(clave) {
+    document.getElementById(`contador${clave}`).textContent = productos[clave].cantidad;
+}
+function actualizarResumen() {
+    const resumen = document.getElementById("resumenPedido");
+    resumen.innerHTML = ""; // Limpiar contenido anterior
+
+    let totalGeneral = 0;
+
+    for (const clave in productos) {
+        const prod = productos[clave];
+        if (prod.cantidad > 0) {
+            const subtotal = prod.cantidad * prod.precio;
+            totalGeneral += subtotal;
+
+            const linea = document.createElement("div");
+            linea.textContent = `${prod.nombre}: ${prod.cantidad} x ${prod.precio}€ = ${subtotal}€`;
+            resumen.appendChild(linea);
+        }
+    }
+
+    // Línea del total
+    if (totalGeneral > 0) {
+        const totalLinea = document.createElement("div");
+        totalLinea.style.marginTop = "10px";
+        totalLinea.style.fontWeight = "bold";
+        totalLinea.textContent = `Total: ${totalGeneral}€`;
+        resumen.appendChild(totalLinea);
+    }
 }

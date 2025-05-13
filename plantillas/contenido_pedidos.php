@@ -1,34 +1,46 @@
 <script>
-let contadorB = 0;
-let contadorP = 0;
-let contadorN = 0;
-let contadorI = 0;
-let contadorK = 0;
-let contadorC = 0;
+const productos = {
+    B: { nombre: "Butano", precio: 17.67, cantidad: 0 },
+    P: { nombre: "Propano", precio: 14.65, cantidad: 0 },
+    N: { nombre: "Nel", precio: 20.85, cantidad: 0 },
+    I: { nombre: "Industrial", precio: 79.8, cantidad: 0 },
+    K: { nombre: "K6", precio: 17.85, cantidad: 0 },
+    C: { nombre: "Carretilla", precio: 23.8, cantidad: 0 }
+};
 </script>
 <script src="funciones.js"></script>
-
-<div class="pedidos">
-    <img src="img/butano.png" alt="Bombona de butano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoB()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorB">0</span><span class="simboloSuma" onclick="sumarpedidoB()"><i class="fa-solid fa-plus"></i></span>
+<div id="contenedorPedidos">
+    <div id="pedidosIzquierda">
+        <div class="pedidos">
+            <img src="img/butano.png" alt="Bombona de butano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('B')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorB">0</span><span class="simboloSuma" onclick="sumarpedido('B')"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="pedidos">
+            <img id="propano" src="img/propano.png" alt="Bombona de propano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('P')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorP">0</span><span class="simboloSuma" onclick="sumarpedido('P')"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="pedidos">
+            <img id="nel" src="img/nel.png" alt="Bombona de propano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('N')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorN">0</span><span class="simboloSuma" onclick="sumarpedido('N')"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="pedidos">
+            <img id="industrial" src="img/industrial.png" alt="Bombona de propano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('I')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorI">0</span><span class="simboloSuma" onclick="sumarpedido('I')"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="pedidos">
+            <img id="k6" src="img/k6.png" alt="Bombona de propano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('K')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorK">0</span><span class="simboloSuma" onclick="sumarpedido('K')"><i class="fa-solid fa-plus"></i></span>
+        </div>
+        <div class="pedidos">
+            <img id="carretilla" src="img/carretilla.png" alt="Bombona de propano naranja de Repsol">
+            <span class="simboloResta" onclick="restarpedido('C')"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorC">0</span><span class="simboloSuma" onclick="sumarpedido('C')"><i class="fa-solid fa-plus"></i></span>
+        </div class="pedidos">
+    </div>
+    <div id="pedidosDerecha">
+        <div id="resumenSticky">
+            <h3>Resumen de pedido</h3>
+            <div id="resumenPedido"></div>
+        </div> 
+    </div>
+    
 </div>
-<div class="pedidos">
-    <img id="propano" src="img/propano.png" alt="Bombona de propano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoP()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorP">0</span><span class="simboloSuma" onclick="sumarpedidoP()"><i class="fa-solid fa-plus"></i></span>
-</div>
-<div class="pedidos">
-    <img id="nel" src="img/nel.png" alt="Bombona de propano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoN()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorN">0</span><span class="simboloSuma" onclick="sumarpedidoN()"><i class="fa-solid fa-plus"></i></span>
-</div>
-<div class="pedidos">
-    <img id="industrial" src="img/industrial.png" alt="Bombona de propano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoI()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorI">0</span><span class="simboloSuma" onclick="sumarpedidoI()"><i class="fa-solid fa-plus"></i></span>
-</div>
-<div class="pedidos">
-    <img id="k6" src="img/k6.png" alt="Bombona de propano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoK()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorK">0</span><span class="simboloSuma" onclick="sumarpedidoK()"><i class="fa-solid fa-plus"></i></span>
-</div>
-<div class="pedidos">
-    <img id="carretilla" src="img/carretilla.png" alt="Bombona de propano naranja de Repsol">
-    <span class="simboloResta" onclick="restarpedidoC()"><i class="fa-solid fa-minus"></i></span><span class="contadorPedido" id="contadorC">0</span><span class="simboloSuma" onclick="sumarpedidoC()"><i class="fa-solid fa-plus"></i></span>
-</div class="pedidos">

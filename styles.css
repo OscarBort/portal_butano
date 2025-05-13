@@ -129,6 +129,12 @@ main{
     padding: 20px;
 }
 /* pedidos*/
+#contenedorPedidos{
+    display: flex;
+}
+#pedidosIzquierda{
+    width: 65%;
+}
 .pedidos {
     display: flex;
     align-items: center; /* o center, start, según lo que busques */
@@ -138,7 +144,7 @@ main{
 .pedidos img {
     height: 250px;
     width: 250px;
-    margin-left: -35%;
+    margin-left: -15%;
 }
 #carretilla{
     margin-bottom: 20px;
@@ -146,11 +152,18 @@ main{
 .pedidos p {
     margin-bottom: 48%;
 }
-.simboloResta, .simboloSuma{
+.simboloResta, .simboloSuma, .contadorPedido{
     border: 1px, black, solid;
     padding: 3px;
     background-color: azure;
     cursor: pointer;
+}
+#pedidosDerecha{
+    width: 35%;
+}
+#resumenSticky{
+    position: sticky;
+    top: 40px;
 }
 /* barra búsqueda*/
 .busqueda{
