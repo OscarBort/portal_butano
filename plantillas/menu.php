@@ -5,8 +5,7 @@ $_SESSION["rol"] = "invitado";
 <nav>
         <ul>
             <li id="inicio"><a href="index.php">Inicio</a></li>
-            <li><a href="">Productos</a></li>
-            <li><a href="">Pedidos</a></li>
+            <li><a href="pedidos.php">Pedidos</a></li>
             <?php
             if ($_SESSION["rol"] == "administrador"){
             echo '<li><a href="usuarios.php">Usuarios</a></li>';

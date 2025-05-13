@@ -1,3 +1,4 @@
+
 document.getElementById("usuario").addEventListener("blur", validarUsuario);
 document.getElementById("usuario").addEventListener("keyup", validarUsuario);
 document.getElementById("nombre").addEventListener("blur", validarUsuarioForm);
@@ -46,4 +47,53 @@ function compCorreo(){
         document.getElementById("correo").style.backgroundColor = "red";
         boton.disabled = true;
     }
+}
+// Funciones para la página pedidos
+function restarpedidoB(){
+    contadorB--;
+    document.getElementById("contadorB").innerText = contadorB;
+}
+function sumarpedidoB(){
+    contadorB++;
+    document.getElementById("contadorB").innerText = contadorB;
+}
+function restarpedidoP(){
+    contadorP--;
+    document.getElementById("contadorP").innerText = contadorP;
+}
+function sumarpedidoP(){
+    contadorP++;
+    document.getElementById("contadorP").innerText = contadorP;
+}
+function restarpedidoN(){
+    contadorN--;
+    document.getElementById("contadorN").innerText = contadorN;
+}
+function sumarpedidoN(){
+    contadorN++;
+    document.getElementById("contadorN").innerText = contadorN;
+}
+function restarpedidoI(){
+    contadorI--;
+    document.getElementById("contadorI").innerText = contadorI;
+}
+function sumarpedidoI(){
+    contadorI++;
+    document.getElementById("contadorI").innerText = contadorI;
+}
+function restarpedidoK(){
+    contadorK--;
+    document.getElementById("contadorK").innerText = contadorK;
+}
+function sumarpedidoK(){
+    contadorK++;
+    document.getElementById("contadorK").innerText = contadorK;
+}
+function restarpedidoC(){
+    contadorC--;
+    document.getElementById("contadorC").innerText = contadorC;
+}
+function sumarpedidoC(){
+    contadorC++;
+    document.getElementById("contadorC").innerText = contadorC;
 }
