@@ -40,6 +40,10 @@ const productos = {
         <div id="resumenSticky">
             <h3>Resumen de pedido</h3>
             <div id="resumenPedido"></div>
+            <form method="POST" action="procesar_pedido.php" onsubmit="generarResumenTexto()">
+                <input type="hidden" name="pedidoResumen" id="pedidoResumenInput">
+                <button type="submit">Enviar pedido</button>
+            </form>
         </div> 
     </div>
     

@@ -8,8 +8,10 @@ require 'vendor/autoload.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {  #aqui pondreis lo que vosotros querais capturar
     // Capturar y sanitizar los datos del formulario
     $nombre = isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre']) : '';
-    $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-    $mensaje = isset($_POST['mensaje']) ? htmlspecialchars($_POST['mensaje']) : '';
+    $correo = isset($_POST['correo']) ? htmlspecialchars($_POST['correo']) : '';
+    $telefono = isset($_POST['telefono']) ? htmlspecialchars($_POST['telefono']) : '';
+    $comentario = isset($_POST['comentario']) ? htmlspecialchars($_POST['comentario']) : '';
+    $pedido = isset($_POST['pedido']) ? htmlspecialchars($_POST['pedido']) : '';
 
     // Validar campos obligatorios
     /*if (empty($nombre) || empty($dni) || empty($email)) {
@@ -29,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {  #aqui pondreis lo que vosotros quer
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
 
+        $mail->CharSet = 'UTF-8'; // Asegura que los caracteres especiales se codifiquen correctamente
+
         // Configurar remitente y destinatario
-        $mail->setFrom('no-reply@ejemplo.com', 'Cimientos & Sueños');#aqui iria el monbre de vuestro porta
+        $mail->setFrom('no-reply@ejemplo.com', 'Butano');#aqui iria el monbre de vuestro porta
         $mail->addAddress('destinatario@ejemplo.com'); // Capturado por Mailtrap
 
         // Contenido del correo con datos del formulario /*aqui pondiais vuestros datos que quereis que recoja*/
@@ -39,10 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {  #aqui pondreis lo que vosotros quer
         $mail->Body = "
             <h1>Nuevo pedido</h1>
             <p><strong>Nombre completo:</strong> $nombre</p>
-            <p><strong>Correo electrónico:</strong> $email</p>
-            <p><strong>Mensaje:</strong> $mensaje</p>
+            <p><strong>Correo electrónico:</strong> $correo</p>
+            <p><strong>Teléfono:</strong> $telefono</p>
+            <p><strong>Pedido:</strong> " . nl2br($pedido) . "</p>
+            <p><strong>Comentarios:</strong> " . nl2br($comentario) . "</p>
         ";
-        $mail->AltBody = "Nombre: $nombre\nDNI: $dni\nCorreo: $email\nTeléfono: $telefono\nTipo: $tipo\nPresupuesto: $presupuesto\nMensaje: $mensaje"; #esto es el mensaje segun los campos que tengas en tu formulario 
+        $mail->AltBody = "Nombre: $nombre\n\nCorreo: $correo\nTeléfono: $telefono\nPedido: $pedido\nComentario: $comentario"; #esto es el mensaje segun los campos que tengas en tu formulario 
 
         // Enviar correo
         $mail->send();

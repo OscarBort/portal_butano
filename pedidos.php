@@ -1,4 +1,3 @@
-
 <?php
 include "plantillas/funciones.php";
 
